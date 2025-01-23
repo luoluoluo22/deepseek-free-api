@@ -3,14 +3,12 @@ services:
     name: deepseek-free-api       # 服务名称（自定义）
     region: singapore             # 部署区域
     plan: free                    # 免费实例
-    env: docker                   # 使用 Docker 镜像
-    image: vinlic/deepseek-free-api:latest  # 镜像地址
-    port: 8000                    # 服务监听端口
+    docker:
+      image: vinlic/deepseek-free-api:latest
     envVars:
-      - key: AUTHORIZATION        # DeepSeek 认证 Token
-        sync: false               # 禁用自动同步（防止 Token 泄漏）
-        value: "Bearer 	
-kxoHk99HzGSV+MMsY8YQ3Dbme71sMI6+/YrjZvr1ipR/9sKxFcDAUbQT1fBEsVHr"  # 替换为实际 Token
+      - key: PORT
+        value: 8000
+        key: AUTHORIZATION
+        value: "Bearer kxoHk99HzGSV+MMsY8YQ3Dbme71sMI6+/YrjZvr1ipR/9sKxFcDAUbQT1fBEsVHr"
       - key: TZ                   # 时区设置
         value: Asia/Shanghai
-    healthCheckPath: /health      # 健康检查路径（可选）
