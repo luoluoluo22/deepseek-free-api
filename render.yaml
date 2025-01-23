@@ -1,14 +1,14 @@
+# render.yaml
 services:
   - type: web
-    name: deepseek-free-api       # 服务名称（自定义）
-    region: singapore             # 部署区域
-    plan: free                    # 免费实例
-    docker:
-      image: vinlic/deepseek-free-api:latest
+    name: deepseek-free-api
+    plan: free
+    region: singapore
+    env: node  # 指定 Node.js 环境
+    buildCommand: |
+      npm install
+      npm run build  # 确保生成 dist 目录
+    startCommand: "node dist/index.js"  # 启动路径需与构建输出一致
     envVars:
-      - key: PORT
-        value: 8000
-      - key: AUTHORIZATION
-        value: "Bearer kxoHk99HzGSV+MMsY8YQ3Dbme71sMI6+/YrjZvr1ipR/9sKxFcDAUbQT1fBEsVHr"
-      - key: TZ                   # 时区设置
+      - key: TZ
         value: Asia/Shanghai
