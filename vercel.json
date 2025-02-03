@@ -1,15 +1,28 @@
 {
     "version": 2,
+    "functions": {
+        "api/**/*.ts": {
+            "runtime": "@vercel/node@latest"
+        }
+    },
     "builds": [
         {
             "src": "src/index.ts",
-            "use": "@vercel/node",
-            "config": {
-                "includeFiles": ["dist/**"]
-            }
+            "use": "@vercel/node"
         }
     ],
     "routes": [
+        {
+            "src": "/v1/chat/completions",
+            "dest": "/src/index.ts"
+        },
+        {
+            "src": "/token/check",
+            "dest": "/src/index.ts"
+        },
+        {
+            "handle": "filesystem"
+        },
         {
             "src": "/(.*)",
             "dest": "/src/index.ts",
