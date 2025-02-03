@@ -6,7 +6,8 @@
             "use": "@vercel/node",
             "config": {
                 "includeFiles": ["src/**"],
-                "tsconfig": "tsconfig.json"
+                "tsconfig": "tsconfig.json",
+                "nodeModulesCacheMaxAge": 0
             }
         }
     ],
@@ -31,5 +32,12 @@
                 "Access-Control-Allow-Headers": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Content-Type, Authorization"
             }
         }
-    ]
+    ],
+    "functions": {
+        "src/index.ts": {
+            "runtime": "@vercel/node@latest",
+            "maxDuration": 60,
+            "memory": 1024
+        }
+    }
 }
