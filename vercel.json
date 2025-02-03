@@ -1,17 +1,18 @@
 {
     "version": 2,
-    "buildCommand": "npm run build",
-    "outputDirectory": "dist",
     "builds": [
         {
-            "src": "dist/index.js",
-            "use": "@vercel/node"
+            "src": "src/index.ts",
+            "use": "@vercel/node",
+            "config": {
+                "includeFiles": ["dist/**"]
+            }
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "/dist/index.js",
+            "dest": "/src/index.ts",
             "headers": {
                 "Access-Control-Allow-Credentials": "true",
                 "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
