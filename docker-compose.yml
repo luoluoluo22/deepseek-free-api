@@ -5,8 +5,15 @@ services:
     container_name: deepseek-free-api
     image: vinlic/deepseek-free-api:latest
     restart: always
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
     ports:
       - "8000:8000"
     environment:
       - TZ=Asia/Shanghai
-      - DEEP_SEEK_CHAT_AUTHORIZATION=UFV8fRYleCxxxxxxXYMMKEOJtOmDKffP2W6Km
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
