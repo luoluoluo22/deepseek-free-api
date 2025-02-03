@@ -2,29 +2,25 @@
     "version": 2,
     "builds": [
         {
-            "src": "package.json",
-            "use": "@vercel/node",
-            "config": {
-                "buildCommand": "npm run build",
-                "distDir": "dist"
-            }
+            "src": "src/index.ts",
+            "use": "@vercel/node"
         }
     ],
     "routes": [
         {
             "src": "/v1/chat/completions",
-            "dest": "/dist/index.js"
+            "dest": "src/index.ts"
         },
         {
             "src": "/token/check",
-            "dest": "/dist/index.js"
+            "dest": "src/index.ts"
         },
         {
             "handle": "filesystem"
         },
         {
             "src": "/(.*)",
-            "dest": "/dist/index.js",
+            "dest": "src/index.ts",
             "headers": {
                 "Access-Control-Allow-Credentials": "true",
                 "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
